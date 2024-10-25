@@ -4,6 +4,8 @@
 
 <template>
    <el-button type="primary">Primary</el-button>
+   <el-button type="danger">danger</el-button>
+
 </template>
 
 <style scoped>
