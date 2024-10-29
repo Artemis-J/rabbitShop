@@ -30,6 +30,11 @@ export default defineConfig({
         additionalData: `
         @use "@/styles/element/index.scss" as *;
         `,
+      },
+      less: {
+        additionalData: `
+       @import "@/styles/var.less";
+        `,
       }
     }
   }
