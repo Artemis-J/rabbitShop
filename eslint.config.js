@@ -14,4 +14,10 @@ export default [
 
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
+     // 禁用多词组件名称规则
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off'
+    }
+  }
 ]
