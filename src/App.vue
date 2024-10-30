@@ -5,16 +5,10 @@
 <template>
   <!-- 一级路由出口组件-->
   <RouterView />
-  <div class="test">
-    test less
-  </div>
+  
 </template>
 
 <style scoped lang="less">
-.test{
-  color: @xtxColor;
-}
-
 header {
   line-height: 1.5;
   max-height: 100vh;
