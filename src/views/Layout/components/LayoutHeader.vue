@@ -13,8 +13,7 @@
         <li><a href="#">Sports</a></li>
       </ul>
       <div class="search">
-        <i class=""></i>
-       
+        <i class="iconfont icon-search"></i>
         <input type="text" placeholder="Search...">
       </div>
     </div>
