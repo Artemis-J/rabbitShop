@@ -1,16 +1,28 @@
 <script setup>
+import { getCategoryAPI } from '@/apis/layout'
+import { onMounted, ref } from 'vue';
+const categoryList = ref([]);
+const getCategory = async () => {
+  const res = await getCategoryAPI();
+  console.log(res);
+  categoryList.value = res.data.result;
 
+}
+
+onMounted(() => {
+  getCategory()
+})
 </script>
 
 <template>
   <header class="app-header">
     <div class="container">
-      <h1 class="logo" ><img src="@/assets/images/logo.png" /></h1>
+      <h1 class="logo"><img src="@/assets/images/logo.png" /></h1>
       <ul class="app-header-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Foods</a></li>
-        <li><a href="#">Games</a></li>
-        <li><a href="#">Sports</a></li>
+        <li class="home" v-for="item in categoryList" :key="item.id">
+          <router-link to="/">{{ item.name }}</router-link>
+        </li>
+        
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
@@ -41,6 +53,7 @@
       margin-right: 40px;
       width: 38px;
       text-align: center;
+
       a {
         font-size: 16px;
         font-weight: bolder;
@@ -59,19 +72,20 @@
         }
       }
 
-      
-      
+
+
     }
   }
 
   .logo {
     width: 200px;
-    margin: 10px 10px 10px 100px;
+    margin: 10px 10px 10px 50px;
   }
-.app-header-nav{
-  padding:15px 0 0 30px;
-  
-}
+
+  .app-header-nav {
+    padding: 15px 0 0 30px;
+
+  }
 
 
   .search {
