@@ -20,9 +20,9 @@ onMounted(() => {
       <h1 class="logo"><img src="@/assets/images/logo.png" /></h1>
       <ul class="app-header-nav">
         <li class="home" v-for="item in categoryList" :key="item.id">
-          <router-link to="/">{{ item.name }}</router-link>
+          <RouterLink to="/">{{ item.name }}</RouterLink>
         </li>
-        
+
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
@@ -79,12 +79,15 @@ onMounted(() => {
 
   .logo {
     width: 200px;
-    margin: 10px 10px 10px 50px;
+    height: 80px;
   }
 
   .app-header-nav {
-    padding: 15px 0 0 30px;
-
+    display: flex;
+    width: 820px;
+    padding-left: 40px;
+    position: relative;
+    z-index: 998;
   }
 
 
