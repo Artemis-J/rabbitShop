@@ -61,6 +61,7 @@ function leaveCategory() {
 .home-category {
   width: 250px;
   height: 500px;
+  margin-left: 300px;
   background: rgba(0, 0, 0, 0.8);
   position: relative;
   z-index: 99;
@@ -72,7 +73,7 @@ function leaveCategory() {
       line-height: 50px;
 
       &.active {
-        background: #ff7b00; /* 激活时的背景色 */
+        background: @xtxColor; /* 激活时的背景色 */
       }
 
       a {
@@ -94,6 +95,7 @@ function leaveCategory() {
     position: absolute;
     left: 250px;
     top: 0;
+    //从none改成了block
     display: block;
     padding: 0 15px;
 

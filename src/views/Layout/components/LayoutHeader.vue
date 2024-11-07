@@ -1,6 +1,6 @@
 <script setup>
 import { useCategoryStore } from '@/stores/category';
-const categoryStore =useCategoryStore()
+const categoryStore = useCategoryStore()
 </script>
 
 <template>
@@ -25,11 +25,20 @@ const categoryStore =useCategoryStore()
 <style scoped lang='less'>
 .app-header {
   background: #fff;
+  width: 100%;
+  /* 设置为 100% 占满整个页面宽度 */
+  position: relative;
+  display: flex;
+  justify-content: center;
+
 
   .container {
     display: flex;
     align-items: center;
-    width: auto;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1200px; /* 设置一个最大宽度，保持内容居中 */
+    gap: 20px
   }
 
   ul {
@@ -40,8 +49,9 @@ const categoryStore =useCategoryStore()
 
     li {
       margin-right: 40px;
-      width: 38px;
-      text-align: center;
+      margin-top:10px;
+      width: auto;
+    
 
       a {
         font-size: 16px;
@@ -73,23 +83,24 @@ const categoryStore =useCategoryStore()
 
   .app-header-nav {
     display: flex;
+    justify-content: center; /* 水平居中导航 */
     width: 820px;
-    padding-left: 40px;
+    
     position: relative;
     z-index: 998;
   }
 
 
   .search {
-    width: 170px;
+    width: 250px;
     height: 32px;
     position: relative;
-    margin-left: 200px;
+    margin-left: 40px;
     border-bottom: 1px solid #e7e7e7;
     line-height: 32px;
 
     input {
-      width: 140px;
+      width: 170px;
       padding-left: 5px;
       color: #666;
     }
