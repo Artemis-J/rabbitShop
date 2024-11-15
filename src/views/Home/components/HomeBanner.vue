@@ -30,6 +30,8 @@ onMounted(() => getBanner());
 .home-banner {
     width: 1240px;
     height: 500px;
+    margin-left: 450px;
+    margin-top: 120px;
     position: absolute;
     left: 0;
     top: 0;
