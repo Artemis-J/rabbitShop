@@ -1,4 +1,5 @@
 import httpInstance from "@/utils/http";
+import localInstance from "@/utils/local";
 
 //获取banner
 export function getBannerAPI(){
@@ -20,5 +21,13 @@ export const findNewAPI = ()=>{
 export const findHotAPI = ()=>{
     return httpInstance({
         url:'home/hot'
+    })
+}
+
+//产品列表
+export const getGoodsAPI = ()=>{
+    return localInstance({
+        url:'/api/categories-products'
+        
     })
 }
