@@ -2,6 +2,8 @@
 import HomePanel from './HomePanel.vue';
 import { getGoodsAPI } from '@/apis/home';
 import { onMounted, ref } from 'vue';
+import GoodsItem from './GoodsItem.vue';
+
 
 //获取数据列表
 const goodsProduct = ref([]);
@@ -18,22 +20,18 @@ onMounted(() => getGoods());
     <HomePanel :title="cate.name" v-for="cate in goodsProduct" :key="cate.id">
       <div class="box">
         <RouterLink class="cover" to="/">
-          <img v-img-lazy="`http://localhost:8080/img/${cate.picture}`" />
+          <img v-img-lazy="cate.picture" />
           <strong class="label">
             <span>{{ cate.name }}馆</span>
           </strong>
         </RouterLink>
-        <ul class="goods-list">
-          <li v-for="good in cate.products" :key="good.id">
-            <RouterLink to="/" class="goods-item">
-              <img v-img-lazy="good.picture" alt="" />
-              <p class="name ellipsis">{{ good.name }}</p>
-              <p class="name ellipsis">{{ good.price }}</p>
-            </RouterLink>
-          </li>
 
+        <ul class="goods-list">
+          <li v-for="goods in cate.products" :key="goods.id">
+            <GoodsItem :goods="goods" />
+          </li>
         </ul>
-       
+
       </div>
     </HomePanel>
   </div>
@@ -114,20 +112,7 @@ onMounted(() => getGoods());
       display: flex;
       flex-wrap: wrap;
 
-      li {
-        width: 240px;
-        height: 300px;
-        margin-right: 10px;
-        margin-bottom: 10px;
-
-        &:nth-last-child(-n+4) {
-          margin-bottom: 0;
-        }
-
-        &:nth-child(4n) {
-          margin-right: 0;
-        }
-      }
+      
     }
   }
 }
