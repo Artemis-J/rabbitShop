@@ -9,7 +9,7 @@ const categoryStore = useCategoryStore()
       <h1 class="logo"><img src="@/assets/images/logo.png" /></h1>
       <ul class="app-header-nav">
         <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
-          <RouterLink :to="`/category/${ item.id }`">{{ item.name }}</RouterLink>
+          <RouterLink active-class="active" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
         </li>
 
       </ul>
@@ -37,7 +37,8 @@ const categoryStore = useCategoryStore()
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    max-width: 1200px; /* 设置一个最大宽度，保持内容居中 */
+    max-width: 1200px;
+    /* 设置一个最大宽度，保持内容居中 */
     gap: 20px
   }
 
@@ -49,15 +50,14 @@ const categoryStore = useCategoryStore()
 
     li {
       margin-right: 40px;
-      margin-top:10px;
+      margin-top: 10px;
       width: auto;
-    
+
 
       a {
         font-size: 16px;
         font-weight: bolder;
         height: 32px;
-        color: @xtxColor;
         line-height: 1.5;
         display: inline-block;
 
@@ -71,6 +71,10 @@ const categoryStore = useCategoryStore()
         }
       }
 
+      .active {
+        color:  @xtxColor;
+        border-bottom: 1px solid @xtxColor;
+      }
 
 
     }
@@ -83,9 +87,10 @@ const categoryStore = useCategoryStore()
 
   .app-header-nav {
     display: flex;
-    justify-content: center; /* 水平居中导航 */
+    justify-content: center;
+    /* 水平居中导航 */
     width: 820px;
-    
+
     position: relative;
     z-index: 998;
   }
