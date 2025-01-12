@@ -20,3 +20,11 @@ export const getCategoryFilterAPI = (id)=>{
     })
 }
 
+/*获取导航数据*/
+export const getSubCategoryAPI = (data)=>{
+    return httpInstance({
+        url: '/category/goods/temporary',
+        method: 'POST',
+       data
+    })
+}
