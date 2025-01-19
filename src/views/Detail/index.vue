@@ -2,7 +2,9 @@
 import { getDetail } from '@/apis/detail';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { ArrowRight } from '@element-plus/icons-vue'
+import { ArrowRight } from '@element-plus/icons-vue';
+import DetailHot from './components/DetailHot.vue';
+
 
 const goods = ref({});
 const route = useRoute();
@@ -31,7 +33,7 @@ onMounted(() => getGoods());
 
         <!-- 大容器 -->
         <div class="outer-container grid gap-4 p-4">
-            <!-- 上部分容器 -->
+            <!-- 上部分 -->
             <div class="top-container bg-white p-4 rounded shadow-md">
                 <div class="grid grid-cols-5 gap-5">
                     <!-- 左上 -->
@@ -79,11 +81,11 @@ onMounted(() => getGoods());
                 </div>
             </div>
 
-            <!-- 下部分容器 -->
+            <!-- 下部分 -->
             <div class="bottom-container p-4 rounded shadow-md">
-                <div class="grid grid-cols-6 gap-4">
+                <div class="grid grid-cols-8 gap-6">
                     <!-- 左下 -->
-                    <div class="bottom-left col-span-4 bg-white p-4 flex flex-col items-center">
+                    <div class="bottom-left col-span-6 bg-white p-4 flex flex-col items-center">
                         <!-- 商品详情部分 -->
                         <div class="details w-full mb-8">
                             <h3 class="text-xl font-bold mb-4">商品详情</h3>
@@ -108,41 +110,10 @@ onMounted(() => getGoods());
 
                     <!-- 右下 -->
                     <div class="bottom-right col-span-2 bg-white p-4 flex flex-col items-center">
-                        <!-- 24小时热榜容器 -->
-                        <div class="hot-list w-full">
-                            <div class="title bg-orange-500 text-white p-2 text-xl font-semibold text-center">
-                                24小时热榜
-                            </div>
-                            <div class="product bg-white p-4 rounded-lg shadow-md">
-                                <div class="flex flex-col items-center">
-                                    <div class="w-full flex justify-center">
-                                        <img src="https://via.placeholder.com/150" alt="商品图片"
-                                            class="w-1/2 h-auto object-contain rounded-lg">
-                                    </div>
-                                    <h2 class="text-lg font-bold mt-2">商品名称</h2>
-                                    <p class="text-gray-600">商品描述</p>
-                                    <p class="text-xl font-bold text-orange-500 mt-2">&yen;100</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 周热榜容器 -->
-                        <div class="hot-list w-full">
-                            <div class="title bg-orange-500 text-white p-2 text-xl font-semibold text-center">
-                                周热榜
-                            </div>
-                            <div class="product bg-white p-4 rounded-lg shadow-md">
-                                <div class="flex flex-col items-center">
-                                    <div class="w-full flex justify-center">
-                                        <img src="https://via.placeholder.com/150" alt="商品图片"
-                                            class="w-1/2 h-auto object-contain rounded-lg">
-                                    </div>
-                                    <h2 class="text-lg font-bold mt-2">商品名称</h2>
-                                    <p class="text-gray-600">商品描述</p>
-                                    <p class="text-xl font-bold text-orange-500 mt-2">&yen;150</p>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- 24小时热榜 -->
+                        <DetailHot :hotType="1"/>
+                        <!-- 周热榜 -->
+                        <DetailHot :hotType="2"/>
                     </div>
 
 
