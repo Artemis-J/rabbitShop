@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { ArrowRight } from '@element-plus/icons-vue';
 import DetailHot from './components/DetailHot.vue';
-
+import ImageView from '@components/ImageView/index.vue';
 
 const goods = ref({});
 const route = useRoute();
@@ -38,6 +38,9 @@ onMounted(() => getGoods());
                 <div class="grid grid-cols-5 gap-5">
                     <!-- 左上 -->
                     <div class="top-left col-span-2 p-4 flex flex-col justify-center items-center">
+                        <!-- 图片预览区域 -->
+                        <ImageView />
+                        <!-- 统计数量 -->
                         <div class="grid grid-cols-4 gap-2 w-full ">
                             <div class="info-item text-center">
                                 <p class="title"><i class="icon">🔥</i>销量人气</p>
@@ -111,9 +114,9 @@ onMounted(() => getGoods());
                     <!-- 右下 -->
                     <div class="bottom-right col-span-2 bg-white p-4 flex flex-col items-center">
                         <!-- 24小时热榜 -->
-                        <DetailHot :hotType="1"/>
+                        <DetailHot :hotType="1" />
                         <!-- 周热榜 -->
-                        <DetailHot :hotType="2"/>
+                        <DetailHot :hotType="2" />
                     </div>
 
 
