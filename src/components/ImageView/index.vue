@@ -14,22 +14,30 @@ const imageList = [
 // 当前预览图的索引
 const currIndex = ref(0);
 
-// 1. 是否显示放大镜和大图
+// 是否显示放大镜和大图
 const show = ref(false);
 
-// 2. 放大镜的坐标
+// 放大镜的坐标
 const layerPosition = reactive({
     left: 0,
     top: 0,
 });
 
-// 3. 使用useMouseInElement得到基于元素左上角的坐标和是否离开元素数据
+//放大镜大图的坐标
+const largePosition = reactive({
+    backgroundPositionX: 0,
+    backgroundPositionY: 0,
+});
+
+// 使用useMouseInElement得到基于元素左上角的坐标和是否离开元素数据
 const target = ref(null);
 const { elementX, elementY, isOutside } = useMouseInElement(target);
 
 watch([elementX, elementY, isOutside], () => {
     show.value = !isOutside.value;//在区域内才显示放大镜
-
+    
+    if (isOutside.value) return;//如果鼠标不在范围内，后续逻辑不执行
+    
     const position = { x: 0, y: 0 }; //放大镜初始坐标
 
     //横向
@@ -38,7 +46,7 @@ watch([elementX, elementY, isOutside], () => {
     //鼠标水平超过（显示图宽度-放大镜宽度+放大镜一半宽度）时，放大镜停止移动，防止出界
     else if (elementX.value > 300) position.x = 200;
     else position.x = elementX.value - 100;
-    
+
     //纵向同理
     if (elementY.value < 100) position.y = 0;
     else if (elementY.value > 300) position.y = 200;
@@ -47,6 +55,10 @@ watch([elementX, elementY, isOutside], () => {
     // 给样式赋值
     layerPosition.left = `${position.x}px`;
     layerPosition.top = `${position.y}px`;
+    //
+    largePosition.backgroundPositionX = `${-2 * position.x}px`;
+    largePosition.backgroundPositionY = `${-2 * position.y}px`;
+
 });
 
 
@@ -55,8 +67,7 @@ watch([elementX, elementY, isOutside], () => {
 <template>
     <div class="image-preview flex m-4">
         <!-- 左侧显示图 -->
-        <div class="main-image relative w-[400px] h-[400px] flex justify-center items-center bg-gray-200 " ref="target"
-            :style="largePosition">
+        <div class="main-image relative w-[400px] h-[400px] flex justify-center items-center bg-gray-200 " ref="target">
             <img id="mainImage" :src="imageList[currIndex]" alt="" class="w-full h-full object-cover">
             <!-- 放大镜 -->
             <div v-show="show" class="magnifier absolute w-[200px] h-[200px] bg-gray-500 bg-opacity-50 overflow-hidden"
@@ -73,6 +84,16 @@ watch([elementX, elementY, isOutside], () => {
                     <img :src="image" alt="" class="w-full h-full object-cover">
                 </li>
             </ul>
+        </div>
+
+        <!-- 放大镜大图 -->
+        <div v-show="show" class="absolute left-[630px] w-[400px] h-[400px] bg-no-repeat bg-cover z-50" :style="[
+            {
+                backgroundImage: `url(${imageList[currIndex]})`,
+                backgroundSize: '800px 800px'
+            }, largePosition
+        ]">
+
         </div>
     </div>
 
