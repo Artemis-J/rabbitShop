@@ -39,7 +39,7 @@ onMounted(() => getGoods());
                     <!-- 左上 -->
                     <div class="top-left col-span-3 p-4 flex flex-col justify-center ">
                         <!-- 图片预览区域 -->
-                        <ImageView />
+                        <ImageView :image-list="goods.mainPictures"/>
                         <!-- 统计数量 -->
                         <div class="grid grid-cols-4 w-3/4 ml-8">
                             <div class="info-item text-center">

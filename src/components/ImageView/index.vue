@@ -2,14 +2,19 @@
 import { reactive, ref, watch } from 'vue';
 import { useMouseInElement } from '@vueuse/core';
 
-//图片列表
-const imageList = [
-    "https://yanxuan-item.nosdn.127.net/3683d874b9623434a10b4ab0c2e6be9f.png",
-    "https://yanxuan-item.nosdn.127.net/87e67decbff7cc5b4d02050b8cd62d2f.png",
-    "https://yanxuan-item.nosdn.127.net/11956ee9b0657112819ad4b307cd6765.png",
-    "https://yanxuan-item.nosdn.127.net/6e76349dcd4f8e0ffe4d0d0960a17ad9.png",
-    "https://yanxuan-item.nosdn.127.net/0774f25b48c256a59e9e8f21e51fadae.png",
-];
+//props适配图片列表
+//用defineProps定义组件的props属性
+//props是 Vue 组件接收外部传递数据的一种方式
+defineProps({
+    imageList: {//希望父组件传递一个值
+        type: Array,
+        default: () => []//默认值为空数组
+    }
+})
+// 使用 () => [] 而不是 [] 的原因是，
+// 每个组件实例都会生成一个新的数组，避免多个组件实例共享同一个数组对象，
+// 防止意外数据污染。
+
 
 // 当前预览图的索引
 const currIndex = ref(0);
@@ -35,9 +40,9 @@ const { elementX, elementY, isOutside } = useMouseInElement(target);
 
 watch([elementX, elementY, isOutside], () => {
     show.value = !isOutside.value;//在区域内才显示放大镜
-    
+
     if (isOutside.value) return;//如果鼠标不在范围内，后续逻辑不执行
-    
+
     const position = { x: 0, y: 0 }; //放大镜初始坐标
 
     //横向
