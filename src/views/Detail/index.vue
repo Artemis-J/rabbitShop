@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router';
 import { ArrowRight } from '@element-plus/icons-vue';
 import DetailHot from './components/DetailHot.vue';
 import ImageView from '@components/ImageView/index.vue';
+import Sku from '@components/Sku/index.vue';
 
 const goods = ref({});
 const route = useRoute();
@@ -39,7 +40,7 @@ onMounted(() => getGoods());
                     <!-- 左上 -->
                     <div class="top-left col-span-3 p-4 flex flex-col justify-center ">
                         <!-- 图片预览区域 -->
-                        <ImageView :image-list="goods.mainPictures"/>
+                        <ImageView :image-list="goods.mainPictures" />
                         <!-- 统计数量 -->
                         <div class="grid grid-cols-4 w-3/4 ml-8">
                             <div class="info-item text-center">
@@ -67,14 +68,18 @@ onMounted(() => getGoods());
                         <p class="text-lg text-gray-500">{{ goods.desc }}</p>
                         <p class="text-2xl">
                             <span class="text-orange-500 font-bold">&yen;{{ goods.price }}</span>
-                            <span class="line-through text-gray-500">&yen;{{ goods.oldPrice }}</span>
+                            <span class="line-through text-gray-400 pl-3">&yen;{{ goods.oldPrice }}</span>
                         </p>
 
                         <div class="text-lg text-gray-600 space-y-2 bg-gray-100 max-w-lg">
                             <p class="pt-2 pl-2">配送方式：全国包邮</p>
                             <p class="pb-2 pl-2">售后保障：7天无理由退换货</p>
                         </div>
+                        <!-- sku组件 -->
+                        <Sku :goods="goods" />
+                        <!-- 数据组件 -->
 
+                        <!-- 按钮组件 -->
                         <div>
                             <button
                                 class="w-max-fit p-3 my-4 bg-emerald-400 hover:bg-emerald-600 text-white rounded-lg text-lg">加入购物车</button>
@@ -106,7 +111,7 @@ onMounted(() => getGoods());
                         <!-- 商品图片部分 -->
                         <div class="details-images w-full mb-4">
                             <div v-for="img in goods.details?.pictures" :key="img" class="w-full flex justify-center">
-                                <img :src="img" alt="商品图片" class="max-w-full h-auto object-contain rounded-lg">
+                                <img :src="img" alt="商品图片" class="max-w-full h-auto object-contain">
                             </div>
                         </div>
                     </div>
