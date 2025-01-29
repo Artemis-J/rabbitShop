@@ -41,7 +41,7 @@ function leaveCategory() {
           <!-- 商品列表 -->
           <ul>
             <li v-for="i in item.goods" :key="i.id">
-              <RouterLink to="/">
+              <RouterLink :to="`/detail/${i.id}`">
                 <img :src="i.picture" alt="" />
                 <div class="info">
                   <p class="name ellipsis-2">{{ i.name }}</p>

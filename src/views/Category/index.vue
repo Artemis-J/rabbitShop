@@ -7,7 +7,7 @@ import { useCategory } from './composables/useCategory';
 const { bannerList } = useBanner();
 
 //获取分类数据
-const {categoryData} = useCategory();
+const { categoryData } = useCategory();
 
 </script>
 

@@ -1,4 +1,4 @@
-// 回溯算法（Backtracking）
+// 回溯算法（Backtracking）求所有子集
 export default function bwPowerSet(nums) {
     const result = [];
     function backtrack(start, path) {

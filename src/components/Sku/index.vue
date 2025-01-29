@@ -1,15 +1,33 @@
 <script setup>
 import powerSet from './power-set'
-import { watch } from 'vue';
-
-const props = defineProps({
+import { ref, onMounted } from 'vue';
+import { getDetail } from '@/apis/detail';
+import { useRoute } from 'vue-router';
+/*
+defineProps({
     goods: {//希望父组件传递一个值
         type: Object,
         default: () => { }
     }
 })
+*/
 
-// 切换选中状态
+const goods = ref({});
+const route = useRoute();
+let pathMap = {};
+const getGoods = async () => {
+    const res = await getDetail(route.params.id);
+    goods.value = res.data.result;
+    //生成数据字典
+    pathMap = getPathMap(goods.value);
+    //初始化更新按钮状态
+    initDisableStatus(goods.value.specs, pathMap);
+}
+onMounted(() => getGoods());
+
+
+
+// 选中和取消选中实现
 const changeSelectedStatus = (item, v) => {
     if (v.disabled) return;
     // item:同一排的对象
@@ -20,6 +38,21 @@ const changeSelectedStatus = (item, v) => {
         item.values.forEach(v => v.selected = false);
         v.selected = true;
     }
+    //点击按钮时更新
+    updateDisableStatus(goods.value.specs, pathMap);
+    // 产出Sku对象数据
+    const index = getSelectedValues(goods.value.specs).findIndex(item => item === undefined);
+    if (index > -1) {
+        return;
+    } else {
+        //获取sku对象
+        const key= getSelectedValues(goods.value.specs).join('-');
+        const skuIds = pathMap[key];
+        //以skuId作为匹配项去goods.value.skus数组中找
+        const skuObj = goods.value.skus.find(item=>item.id===skuIds[0]);
+        console.log(skuObj);     
+    }
+
 }
 
 // 生成有效路径字典对象
@@ -60,17 +93,33 @@ const initDisableStatus = (specs, pathMap) => {
     })
 }
 
-//用watch监听确保goods传过来了
-watch(() => props.goods, (newGoods) => {
-    if (!newGoods || !newGoods.specs) return;
-    const pathMap = getPathMap(newGoods)
-    console.log(pathMap);
-    initDisableStatus(newGoods.specs, pathMap);
-}, { immediate: true }); // 组件初始化时也执行一次
+//获取选中项的匹配数组
+const getSelectedValues = (specs) => {
+    const arr = [];
+    specs.forEach(spec => {
+        const selectedVal = spec.values.find(item => item.selected);
+        arr.push(selectedVal ? selectedVal.name : undefined);
+    })
+    return arr;
+}
 
+//切换时更新禁用状态
+const updateDisableStatus = (specs, pathMap) => {
+    specs.forEach((spec, index) => {
+        const selectedValues = getSelectedValues(specs);
+        spec.values.forEach(val => {
+            selectedValues[index] = val.name;
+            const key = selectedValues.filter(value => value).join('-');
+            if (pathMap[key]) {
+                val.disabled = false;
+            } else {
+                val.disabled = true;
+            }
+        })
+    })
+}
 
-
-
+// 服饰=>恍若没穿鞋  可测试组合式禁用
 </script>
 
 
@@ -84,11 +133,12 @@ watch(() => props.goods, (newGoods) => {
                 <div v-for="v in item.values" :key="v.name" class="inline-flex items-center gap-2">
                     <!-- 图片类型规格 -->
                     <img v-if="v.picture" :src="v.picture" :title="v.name"
-                        @click="$event => changeSelectedStatus(item, v)" :class="{ 'border-blue-500': v.selected }"
+                        @click="$event => changeSelectedStatus(item, v)"
+                        :class="{ 'border-blue-500': v.selected, 'opacity-50 cursor-not-allowed': v.disabled }"
                         class="w-16 h-16 border rounded-lg hover:shadow-lg cursor-pointer" />
                     <!-- 文字类型规格 -->
                     <span v-else @click="$event => changeSelectedStatus(item, v)"
-                        :class="{ 'border-blue-500': v.selected, 'opacity-50': v.disabled }"
+                        :class="{ 'border-blue-500': v.selected, 'opacity-50 cursor-not-allowed': v.disabled }"
                         class="px-4 py-2 border rounded-lg bg-gray-100 hover:bg-gray-200 cursor-pointer">
                         {{ v.name }}
                     </span>
