@@ -25,8 +25,6 @@ const getGoods = async () => {
 }
 onMounted(() => getGoods());
 
-
-
 // 选中和取消选中实现
 const changeSelectedStatus = (item, v) => {
     if (v.disabled) return;
