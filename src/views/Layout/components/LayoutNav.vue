@@ -6,6 +6,7 @@
     <nav class="app-topnav">
         <div class="container">
             <ul>
+                <!-- 多模板渲染 区分登录和非登录状态 -->
                 <template v-if="false">
                     <li>
                         <a href="javascipt:;"><i class=" iconfont icon-user"></i>Artemis</a>
@@ -17,10 +18,10 @@
                     <li><a href="javascript:;">My Space</a></li>
                 </template>
                 <template v-else>
-                    <li>
+                    <!-- <li>
                         <RouterLink to="/login">Log in</RouterLink>
-                    </li>
-                    <li><a href="javascript:;">register</a></li>
+                    </li> -->
+                    <li><a href="javascript:;" @click="$router.push('/login')">请先登录</a></li>
                 </template>
                 <li><a href="javascript:;">Help center</a></li>
                 <li><a href="javascript:;">About us</a></li>
