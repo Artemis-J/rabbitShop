@@ -1,5 +1,9 @@
 <script setup>
 import { ref } from 'vue';
+import { loginAPI } from '@/apis/user';
+import { ElMessage } from 'element-plus';
+import 'element-plus/theme-chalk/el-message.css';
+import { useRouter } from 'vue-router';
 
 // 准备表单对象
 const form = ref({
@@ -33,14 +37,21 @@ const rules = {
 
 // 获取form实例做统一校验
 const formRef = ref(null);
-const doLogin = ()=>{
+const router = useRouter();
+const doLogin = () => {
+    const { account, password } = form.value;//解构赋值
     // 调用实例方法
-    formRef.value.validate((valid)=>{
+    formRef.value.validate(async (valid) => {
         // valid:所有表单都通过校验才为true
         console.log(valid);
         // 以valid作为判断条件，如果通过才登录
-        if(valid){
-            //登录
+        if (valid) {
+            //登录 account:xiaotuxian001 password:123456
+            const res = await loginAPI({ account, password });
+            // 提示用户成功
+            ElMessage({ type: 'success', message: '登录成功' });
+            //跳转首页
+            router.replace({ path: '/' });
         }
     })
 }
@@ -89,7 +100,8 @@ const doLogin = ()=>{
                         </el-checkbox>
                     </el-form-item>
 
-                    <el-button size="large" class="w-full bg-emerald-400 text-white hover:bg-white-400" @click="doLogin">
+                    <el-button size="large" class="w-full bg-emerald-400 text-white hover:bg-white-400"
+                        @click="doLogin">
                         点击登录
                     </el-button>
                 </el-form>
