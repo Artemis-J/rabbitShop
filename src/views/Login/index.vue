@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-import { loginAPI } from '@/apis/user';
 import { ElMessage } from 'element-plus';
 import 'element-plus/theme-chalk/el-message.css';
 import { useRouter } from 'vue-router';
+
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
 
 // 准备表单对象
 const form = ref({
@@ -47,7 +50,7 @@ const doLogin = () => {
         // 以valid作为判断条件，如果通过才登录
         if (valid) {
             //登录 account:xiaotuxian001 password:123456
-            const res = await loginAPI({ account, password });
+            await userStore.getUserInfo({ account, password });
             // 提示用户成功
             ElMessage({ type: 'success', message: '登录成功' });
             //跳转首页
