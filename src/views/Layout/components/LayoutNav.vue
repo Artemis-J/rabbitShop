@@ -1,5 +1,6 @@
 <script setup>
-
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore();
 </script>
 
 <template>
@@ -7,16 +8,25 @@
         <div class="container">
             <ul>
                 <!-- 多模板渲染 区分登录和非登录状态 -->
-                <template v-if="false">
+                 <!-- 登录时显示第一块，非登录显示第二块 判断：是否有token -->
+                <template v-if="userStore.userInfo.token">
                     <li>
-                        <a href="javascipt:;"><i class=" iconfont icon-user"></i>Artemis</a>
+                        <a href="javascipt:;"><i class=" iconfont icon-user"></i>{{userStore.userInfo.account}}</a>
                     </li>
-                    <li><a href="javascript:;">Logout</a></li>
+                    <li>
+                        <el-popconfirm title="确认退出吗？" confirm-button-text="确认" cancel-button-text="取消">
+                            <template #reference>
+                                <a href="javascript:;">Logout</a>
+                            </template>
+                        </el-popconfirm>
+                    </li>
+
                     <li>
                         <RouterLink to="/member/order">My commands</RouterLink>
                     </li>
                     <li><a href="javascript:;">My Space</a></li>
                 </template>
+
                 <template v-else>
                     <!-- <li>
                         <RouterLink to="/login">Log in</RouterLink>
@@ -25,7 +35,7 @@
                 </template>
                 <li><a href="javascript:;">Help center</a></li>
                 <li><a href="javascript:;">About us</a></li>
-                
+
             </ul>
         </div>
     </nav>
@@ -69,5 +79,4 @@
     }
 }
 
-// ~ 选择器作用：选择当前选择器后的所有元素
-</style>
+// ~ 选择器作用：选择当前选择器后的所有元素</style>
