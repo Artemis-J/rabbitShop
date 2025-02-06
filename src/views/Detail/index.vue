@@ -4,8 +4,10 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { ArrowRight } from '@element-plus/icons-vue';
 import DetailHot from './components/DetailHot.vue';
+import { ElMessage } from 'element-plus';
+import { useCartStore } from '@/stores/cartStore';
 
-
+const cartStore = useCartStore();
 const goods = ref({});
 const route = useRoute();
 const getGoods = async () => {
@@ -13,6 +15,40 @@ const getGoods = async () => {
     goods.value = res.data.result;
 }
 onMounted(() => getGoods());
+
+// sku被操作发生变化时
+let skuObj = {};
+const skuChange = (sku) => {
+    skuObj = sku;
+    console.log('准备加入购物车的信息：', skuObj);
+}
+
+//count
+const count = ref(1);
+const countChange = (count) => {
+    console.log(count);
+}
+
+// 添加购物车
+const addCart = () => {
+    if (skuObj.skuCode) {
+        // 规则已被选择，触发action
+        cartStore.addCart({
+            id: goods.value.id,
+            name: goods.value.name,
+            picture: goods.value.mainPictures[0],
+            price: goods.value.price,
+            count: count.value,
+            skuCode: skuObj.skuCode,
+            attrsText: skuObj.specs,
+            selected: true
+        })
+
+    } else {
+        // 规格没有选择，提示用户
+        ElMessage.warning('请选择规格');
+    }
+}
 </script>
 
 
@@ -75,12 +111,12 @@ onMounted(() => getGoods());
                             <p class="pb-2 pl-2">售后保障：7天无理由退换货</p>
                         </div>
                         <!-- sku组件 -->
-                        <XtxSku />
+                        <XtxSku @change="skuChange" />
                         <!-- 数据组件 -->
-
+                        <el-input-number v-model="count" @change="countChange" />
                         <!-- 按钮组件 -->
                         <div>
-                            <button
+                            <button @click="addCart"
                                 class="w-max-fit p-3 my-4 bg-emerald-400 hover:bg-emerald-600 text-white rounded-lg text-lg">加入购物车</button>
                         </div>
 

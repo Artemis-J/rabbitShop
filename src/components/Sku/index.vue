@@ -3,6 +3,7 @@ import powerSet from './power-set'
 import { ref, onMounted } from 'vue';
 import { getDetail } from '@/apis/detail';
 import { useRoute } from 'vue-router';
+
 /*
 defineProps({
     goods: {//希望父组件传递一个值
@@ -11,7 +12,7 @@ defineProps({
     }
 })
 */
-
+const emit = defineEmits(['change']);
 const goods = ref({});
 const route = useRoute();
 let pathMap = {};
@@ -44,11 +45,14 @@ const changeSelectedStatus = (item, v) => {
         return;
     } else {
         //获取sku对象
-        const key= getSelectedValues(goods.value.specs).join('-');
+        const key = getSelectedValues(goods.value.specs).join('-');
         const skuIds = pathMap[key];
         //以skuId作为匹配项去goods.value.skus数组中找
-        const skuObj = goods.value.skus.find(item=>item.id===skuIds[0]);
-        console.log(skuObj);     
+        const skuObj = goods.value.skus.find(item => item.id === skuIds[0]);
+        // console.log(skuObj);  
+        if (skuObj) {
+            emit('change', skuObj); // 触发事件，把 SKU 传递给父组件
+        }
     }
 
 }
@@ -116,6 +120,7 @@ const updateDisableStatus = (specs, pathMap) => {
         })
     })
 }
+
 
 // 服饰=>恍若没穿鞋  可测试组合式禁用
 </script>
