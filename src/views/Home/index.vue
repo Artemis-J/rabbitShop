@@ -9,7 +9,7 @@ import HomePanel from './components/HomePanel.vue'
 </script>
 
 <template>
-    <div>
+    <div class="flex justify-center items-start w-full mt-4">
         <HomeCategory />
         <HomeBanner />
     </div>
