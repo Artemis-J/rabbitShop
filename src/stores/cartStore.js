@@ -6,7 +6,7 @@ export const useCartStore = defineStore('cart', () => {
     //定义state
     const cartList = ref([]);
 
-    //定义action 
+    //定义action-添加进购物车
     const addCart = (goods) => {
         // 已添加过：count+1
         // 没有添加过：直接push
@@ -18,10 +18,18 @@ export const useCartStore = defineStore('cart', () => {
             cartList.value.push(goods);
         }
     }
+    // 删除商品
+    const delCart = (skuCode) => {
+        // 1.找到要删除项的下标值-splice
+        // 2.使用数组的过滤方法-filter
+        const idx = cartList.value.findIndex((item) => skuCode === item.skuCode);
+        cartList.value.splice(idx, 1);
+    }
 
     return {
         cartList,
-        addCart
+        addCart,
+        delCart
     }
 }, {
     persist: true,

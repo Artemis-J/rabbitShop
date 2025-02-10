@@ -1,9 +1,11 @@
+<!-- 顶部购物车图标 -->
+
 <script setup>
 import { ref } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
 
 const cartStore = useCartStore();
-const isCartOpen = ref(false);
+const isCartOpen = ref(false); //默认购物车弹窗关闭
 // 切换购物车弹窗
 const toggleCart = () => {
   isCartOpen.value = !isCartOpen.value;
@@ -37,12 +39,13 @@ const toggleCart = () => {
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-end mx-4">
+                    <!-- flex-1让该 div 充满剩余空间，使 price 和 count 贴右对齐 -->
+                    <div class="flex flex-col items-end flex-1 text-right">
                         <p class="text-md font-semibold text-emerald-500">¥{{ i.price }}</p>
                         <p class="text-sm text-gray-500">x{{ i.count }}</p>
                     </div>
 
-                    <i class="iconfont icon-close-new"></i>
+                    <i class="iconfont icon-close-new pl-2" @click="cartStore.delCart(i.skuCode)"></i>
                 </li>
 
             </ul>
