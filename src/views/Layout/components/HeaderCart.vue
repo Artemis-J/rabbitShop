@@ -8,7 +8,7 @@ const cartStore = useCartStore();
 const isCartOpen = ref(false); //默认购物车弹窗关闭
 // 切换购物车弹窗
 const toggleCart = () => {
-  isCartOpen.value = !isCartOpen.value;
+    isCartOpen.value = !isCartOpen.value;
 };
 
 </script>
@@ -18,9 +18,9 @@ const toggleCart = () => {
         <!-- 购物车按钮 -->
         <button @click="toggleCart" class="relative p-2 bg-gray-200 rounded-full hover:bg-gray-300">
             <i class="iconfont icon-cart text-xl"></i>
-            <span v-if="totalCount > 0"
+            <span v-if="cartStore.allCount > 0"
                 class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                {{ totalCount }}
+                {{ cartStore.allCount }}
             </span>
         </button>
 
@@ -50,8 +50,15 @@ const toggleCart = () => {
 
             </ul>
 
-            <div class="mt-3 text-right">
-                <p class="text-sm font-semibold">共计：<span class="text-emerald-400">¥{{ totalPrice }}</span></p>
+            <div class="flex justify-between mt-3">
+                <div>
+                    <p class="text-sm font-semibold">共计 <span class="text-emerald-400">{{ cartStore.allCount
+                            }} </span> 件商品</p>
+                    <p class="text-sm font-semibold text-center"><span class="text-emerald-400">¥{{
+                        cartStore.allPrice.toFixed(2)
+                            }}</span></p>
+                </div>
+
                 <button class="mt-2 bg-emerald-400 text-white py-1 px-4 rounded hover:bg-emerald-600">
                     去购物车结算
                 </button>
