@@ -59,9 +59,9 @@ const toggleCart = () => {
                             }}</span></p>
                 </div>
 
-                <button class="mt-2 bg-emerald-400 text-white py-1 px-4 rounded hover:bg-emerald-600">
+                <el-button @click="$router.push('/cartlist')" class="mt-2 bg-emerald-400 text-white py-1 px-4 rounded hover:bg-emerald-600">
                     去购物车结算
-                </button>
+                </el-button>
             </div>
 
             <i></i>
