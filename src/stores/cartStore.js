@@ -25,6 +25,14 @@ export const useCartStore = defineStore('cart', () => {
         const idx = cartList.value.findIndex((item) => skuCode === item.skuCode);
         cartList.value.splice(idx, 1);
     }
+
+    // 单选功能
+    const singleCheck = (skuCode, selected) => {
+        // 通过skuCode找到修改项，把selected改成传过来的selected
+        const item = cartList.value.find((item) => item.skuCode === skuCode);
+        item.selected = selected;
+    }
+
     //计算总数和总价
     const allCount = computed(() => cartList.value.reduce((a, c) => a + c.count, 0));
     const allPrice = computed(() => cartList.value.reduce((a, c) => a + c.count * c.price, 0));
@@ -32,13 +40,14 @@ export const useCartStore = defineStore('cart', () => {
 
 
 
-    
+
     return {
         cartList,
         addCart,
         delCart,
         allCount,
-        allPrice
+        allPrice,
+        singleCheck
     }
 }, {
     persist: true,
