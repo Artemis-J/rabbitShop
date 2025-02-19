@@ -57,12 +57,12 @@ const allCheck = (selected)=>{
         <!-- 统计区域 -->
         <div class="flex justify-between items-center mt-4 p-4 border-t">
             <div>
-                <p>总件数: {{ cartStore.allCount }} 件</p>
-                <p>已选中: 件</p>
-                <p class="text-xl font-bold text-orange-500">¥{{ cartStore.allPrice.toFixed(2) }}</p>
+                <p>共 {{ cartStore.allCount }} 件商品</p>
+                <p>已选中 {{cartStore.selectedCount}} 件</p>
+                <p class="text-xl font-bold text-orange-500">合计：¥{{ cartStore.selectedPrice.toFixed(2) }}</p>
             </div>
             <button class="bg-emerald-500 text-white px-6 py-2 rounded hover:bg-emerald-600">
-                去结算
+                下单结算
             </button>
         </div>
     </div>

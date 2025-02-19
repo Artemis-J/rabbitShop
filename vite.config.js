@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import process from 'node:process'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -39,5 +40,11 @@ export default defineConfig({
         `,
       }
     }
-  }
+  },
+  server: {
+    proxy: {
+      '/api': 'http://pcapi-xiaotuxian-front-devtest.itheima.net', // 替换为实际的 API 服务器地址
+    },
+  },
+  base: process.env.NODE_ENV === 'production' ? '/rabbitShop/' : '/' // 配置 GitHub Pages 的路径
 })
