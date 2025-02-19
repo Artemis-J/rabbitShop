@@ -10,7 +10,7 @@
 - **Frontend**: Vue.js, Vue Router, TailwindCss, Element Plus
 - **Backend**:
    - The backend API is provided by the instructor, handling user authentication, product management for large data testing
-   - I created a simple backend system using **Node.js**, with a local database and API management to ensure that I can accomplish the same task
+   - I created a simple backend system using **Node.js**, with a local database and API management to ensure that I can accomplish the same task(Not deployed)
 - **Database**: MySQL
 - **Deployment**: GitHub Pages
 
