@@ -1,35 +1,20 @@
-# vue3-rabbit
+# vue3-rabbit E-commerce front-end
 
-This template should help get you started developing with Vue 3 in Vite.
+## Features
+- Browse through the product catalog
+- Cart functionality with adding/removing products
+- User authentication
+- Profile management and payment integration (not finished)
 
-## Recommended IDE Setup
+## Technologies Used
+- **Frontend**: Vue.js, Vue Router, TailwindCss, Element Plus
+- **Backend**:
+   - The backend API is provided by the instructor, handling user authentication, product management for large data testing
+   - I created a simple backend system using **Node.js**, with a local database and API management to ensure that I can accomplish the same task
+- **Database**: MySQL
+- **Deployment**: GitHub Pages
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+## Project setup
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Run the frontend
+npm run serve
