@@ -16,7 +16,7 @@ onMounted(() => getNewList())
 <template>
     <HomePanel title="New Product" sub-title="新鲜出炉 品质靠谱">
         <ul class="flex justify-between h-[500px]">
-            <li v-for="item in newList" :key="item.id" class="w-[300px] h-[450px] bg-gray-100">
+            <li v-for="item in newList" :key="item.id" class="w-[300px] h-[450px] bg-[#f0f9f4]">
                 <RouterLink :to="`/detail/${item.id}`">
                     <img :src="item.picture" alt="" class="w-[300px] h-[306px]" />
                     <p class="text-center text-[22px] py-[12px] px-[30px]">{{ item.name }}</p>

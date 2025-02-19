@@ -44,7 +44,7 @@ onMounted(() => getHotList());
             {{ title }}
         </div>
         <div class="product bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-            <RouterLink class="goods-items mb-6" v-for="item in hotList" :key="item.id" :to="`/detail/${item.id}`">
+            <RouterLink class="goods-items mb-6" v-for="item in hotList" :key="item.id" to="/">
                 <div class="w-full flex justify-center">
                     <img :src="item.picture" alt="" class="w-1/2 h-auto object-contain rounded-lg">
                 </div>

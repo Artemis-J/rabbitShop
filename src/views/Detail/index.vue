@@ -117,7 +117,7 @@ const addCart = () => {
                         <!-- 按钮组件 -->
                         <div>
                             <button @click="addCart"
-                                class="w-max-fit p-3 my-4 bg-emerald-400 hover:bg-emerald-600 text-white rounded-lg text-lg">加入购物车</button>
+                                class="w-max-fit p-3 my-4 bg-emerald-400 hover:bg-emerald-600 text-white rounded-lg text-lg">Add to Cart</button>
                         </div>
 
                     </div>
@@ -131,7 +131,7 @@ const addCart = () => {
                     <div class="bottom-left col-span-6 bg-white p-14 flex flex-col items-center">
                         <!-- 商品详情部分 -->
                         <div class="details w-full mb-8">
-                            <h3 class="text-xl font-bold mb-4">商品详情</h3>
+                            <h3 class="text-xl font-bold mb-4">Product Info</h3>
                             <div class="border-b border-gray-300 mb-6"></div>
 
                             <ul class="list-none space-y-4">
