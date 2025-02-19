@@ -1,9 +1,9 @@
-# vue3-rabbit E-commerce front-end
+# Demo RabbitShop E-commerce (front-end)
 
 ## Features
-- Browse through the product catalog
-- Cart functionality with adding/removing products
-- User authentication
+- Browse through the product catalog and product detail
+- Cart with counting and adding/removing products
+- User authentication(token verify)
 - Profile management and payment integration (not finished)
 
 ## Technologies Used
