@@ -7,7 +7,7 @@
 - Profile management and payment integration (not finished)
 
 ## Technologies Used
-- **Frontend**: Vue.js, Vue Router, TailwindCss, Element Plus
+- **Frontend**: Javascript, Vue.js, TailwindCss, Element Plus，Axios
 - **Backend**:
    - The backend API is provided by the instructor, handling user authentication, product management for large data testing
    - I created a simple backend system using **Node.js**, with a local database and API management to ensure that I can accomplish the same task(Not deployed)
