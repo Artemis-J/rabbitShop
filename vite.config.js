@@ -41,10 +41,5 @@ export default defineConfig({
       }
     }
   },
-  server: {
-    proxy: {
-      '/api': 'https://pcapi-xiaotuxian-front-devtest.itheima.net', 
-    },
-  },
   base: process.env.NODE_ENV === 'production' ? '/rabbitShop/' : '/' // 配置 GitHub Pages 的路径
 })
