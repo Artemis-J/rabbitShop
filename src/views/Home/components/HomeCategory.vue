@@ -26,8 +26,9 @@ const leaveCategory = () => {
         <div v-show="activeCategoryId === item.id"
           class="absolute left-[250px] top-0 w-[990px] h-[500px] bg-white/90 p-6 shadow-lg">
           <h4 class="text-gray-800 text-2xl font-semibold flex items-center">
-            分类推荐
-            <small class="text-gray-400 text-base ml-4">根据您的购买或浏览记录推荐</small>
+            Recommended for you
+            <small class="text-gray-400 text-base ml-4">You might like these based on your purchase or browsing
+              history.</small>
           </h4>
           <ul class="flex flex-wrap justify-between mt-4">
             <li v-for="i in item.goods" :key="i.id"

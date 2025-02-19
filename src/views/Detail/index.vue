@@ -58,7 +58,7 @@ const addCart = () => {
         <!-- 面包屑 -->
         <div class="bread-container mb-6 ml-40 text-sm text-gray-500">
             <el-breadcrumb :separator-icon="ArrowRight">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: `/category/${goods.categories?.[1].id}` }">{{
                     goods.categories?.[1].name }}</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories?.[0].id}` }">{{

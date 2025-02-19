@@ -5,57 +5,24 @@ import { onMounted, ref } from 'vue';
 
 //获取数据
 const newList = ref([]);
-const getNewList = async()=>{
+const getNewList = async () => {
     const res = await findNewAPI();
     newList.value = res.data.result;
 }
 
-onMounted(()=>getNewList())
-
+onMounted(() => getNewList())
 </script>
 
 <template>
-    <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
-      <ul class="goods-list">
-        <li v-for="item in newList" :key="item.id">
-            <RouterLink :to="`/detail/${item.id}`">
-                <img :src="item.picture" alt="" />
-                <p class="name">{{ item.name }}</p>
-                <p class="price">&yen;{{ item.price }}</p>
-            </RouterLink>
-        </li>
-      </ul>
+    <HomePanel title="New Product" sub-title="新鲜出炉 品质靠谱">
+        <ul class="flex justify-between h-[500px]">
+            <li v-for="item in newList" :key="item.id" class="w-[300px] h-[450px] bg-gray-100">
+                <RouterLink :to="`/detail/${item.id}`">
+                    <img :src="item.picture" alt="" class="w-[300px] h-[306px]" />
+                    <p class="text-center text-[22px] py-[12px] px-[30px]">{{ item.name }}</p>
+                    <p class="text-center text-[18px] text-orange-600">&yen;{{ item.price }}</p>
+                </RouterLink>
+            </li>
+        </ul>
     </HomePanel>
-   
 </template>
-
-
-<style scoped lang="less">
-.goods-list {
-    display: flex;
-    justify-content: space-between;
-    height: 406px;
-  
-    li {
-        width: 306px;
-        height: 406px;
-        background: #f0f9f4;
-       
-
-        img {
-            width: 306px;
-            height: 306px;
-        }
-
-        p {
-            font-size: 22px;
-            padding: 12px 30px 0 30px;
-            text-align: center;
-        }
-
-        .price {
-            color: @priceColor;
-        }
-    }
-}
-</style>

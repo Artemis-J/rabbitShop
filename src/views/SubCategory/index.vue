@@ -15,7 +15,6 @@ const getCategoryData = async () => {
 onMounted(() => getCategoryData());
 
 //获取基础列表数据渲染
-
 const goodList = ref([]);
 const reqData = ref({
     categoryId: route.params.id,
@@ -40,70 +39,38 @@ const tabChange = () => {
 //加载更多
 const disabled = ref(false);
 const load = async () => {
-    console.log("到底了！");
-    //获取下一页的数据
+    // console.log("到底了！");
     reqData.value.page++;
     const res = await getSubCategoryAPI(reqData.value);
-    goodList.value = [...goodList.value, ...res.data.result.items];//拼接新旧数据
-    //加载完毕，停止监听
+    goodList.value = [...goodList.value, ...res.data.result.items];
     if (res.result.items.length === 0) {
         disabled.value = true;
     }
 }
-
-
 </script>
 
 <template>
-
-    <div class="container">
+    <div class="container p-5">
         <!-- 面包屑 -->
         <div class="bread-container">
             <el-breadcrumb separator=">">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: `/category/${categoryData.parentId}` }">{{ categoryData.parentName
-                    }}</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: `/category/${categoryData.parentId}` }">{{ categoryData.parentName }}</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/' }">{{ categoryData.name }}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
 
-        <div class="sub-container">
+        <div class="sub-container mt-5">
             <el-tabs v-model="reqData.sortField" @tab-click="tabChange">
-                <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
-                <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
-                <el-tab-pane label="最多评论" name="evaluateNum"></el-tab-pane>
+                <el-tab-pane label="New Products" name="publishTime"></el-tab-pane>
+                <el-tab-pane label="Hot Products" name="orderNum"></el-tab-pane>
+                <el-tab-pane label="Top-Rated" name="evaluateNum"></el-tab-pane>
             </el-tabs>
-            <div class="body" v-infinite-scroll="load" :infinite-scoll-disabled="disabled">
+            <div class="body grid grid-cols-5 gap-5 mt-5" v-infinite-scroll="load" :infinite-scoll-disabled="disabled">
                 <!-- 商品列表-->
-                <GoodsItem v-for="goods in goodList" :goods="goods" :key="goods.id" />
+                <GoodsItem v-for="goods in goodList" :goods="goods" :key="goods.id" :to="`/detail/${goods.id}`"/>
             </div>
         </div>
     </div>
-
 </template>
 
-<style scoped lang="less">
-.container {
-    padding: 20px;
-}
-
-.sub-container {
-    padding: 20px;
-}
-
-.body {
-    display: grid;
-    /* 启用 Grid 布局 */
-    grid-template-columns: repeat(5, 1fr);
-    /* 每行显示 5 个商品 */
-    gap: 20px;
-    /* 设置商品之间的间隔 */
-    grid-auto-rows: auto;
-    /* 设置行高自动适应 */
-}
-
-
-.el-tabs {
-    margin-bottom: 20px;
-}
-</style>

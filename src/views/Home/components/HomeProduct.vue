@@ -1,3 +1,4 @@
+<!-- Local Backend not used-->
 <script setup>
 import HomePanel from './HomePanel.vue';
 import { getGoodsAPI } from '@/apis/home';

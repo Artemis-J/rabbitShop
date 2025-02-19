@@ -1,11 +1,11 @@
 <script setup>
-//定义props
+// 定义 props
 defineProps({
-    //主标题
+    // 主标题
     title: {
         type: String
     },
-    //副标题
+    // 副标题
     subTitle: {
         type: String
     }
@@ -13,10 +13,13 @@ defineProps({
 </script>
 
 <template>
-    <div class="home-panel">
+    <div class="bg-white">
         <div class="container">
-            <div class="head">
-                <h3>{{ title }}<small>{{ subTitle }}</small></h3>
+            <div class="flex items-end py-10">
+                <h3 class="flex-1 text-[32px] font-normal ml-2 h-[35px] leading-[35px]">
+                    {{ title }}
+                    <small class="text-[16px] text-gray-500 ml-5">{{ subTitle }}</small>
+                </h3>
                 <!-- 右上角插槽 -->
                 <slot name="right" />
             </div>
@@ -25,31 +28,3 @@ defineProps({
         </div>
     </div>
 </template>
-
-<style scoped lang="less">
-.home-panel {
-    background-color: #fff;
-    margin-left: 200px;
-
-    .head {
-        padding: 40px 0;
-        display: flex;
-        align-items: flex-end;
-
-        h3 {
-            flex: 1;
-            font-size: 32px;
-            font-weight: normal;
-            margin-left: 6px;
-            height: 35px;
-            line-height: 35px;
-
-            small {
-                font-size: 16px;
-                color: #999;
-                margin-left: 20px;
-            }
-        }
-    }
-}
-</style>

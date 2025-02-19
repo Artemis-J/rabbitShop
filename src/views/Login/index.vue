@@ -18,11 +18,11 @@ const form = ref({
 // 准备规则对象
 const rules = {
     account: [
-        { required: true, message: '用户名不能为空', trigger: 'blur' }
+        { required: true, message: 'Username cannot be empty', trigger: 'blur' }
     ],
     password: [
-        { required: true, message: '密码不能为空', trigger: 'blur' },
-        { min: 6, max: 14, message: '密码长度需要6-14字符', trigger: 'blur' },
+        { required: true, message: 'Password cannot be empty', trigger: 'blur' },
+        { min: 6, max: 14, message: 'The password must be 6-14 characters', trigger: 'blur' },
     ],
     agree: [
         {
@@ -30,7 +30,7 @@ const rules = {
                 if (value) {
                     callback();
                 } else {
-                    callback(new Error('请勾选协议'));
+                    callback(new Error('Please check the agreement'));
                 }
 
             }
@@ -52,7 +52,7 @@ const doLogin = () => {
             //登录 account:xiaotuxian001 password:123456
             await userStore.getUserInfo({ account, password });
             // 提示用户成功
-            ElMessage({ type: 'success', message: '登录成功' });
+            ElMessage({ type: 'success', message: 'Login successful' });
             //跳转首页
             router.replace({ path: '/' });
         }
@@ -71,7 +71,7 @@ const doLogin = () => {
                 </RouterLink>
             </h1>
             <RouterLink class="text-gray-600 flex items-center space-x-1 hover:text-blue-500" to="/">
-                <span>回到首页</span>
+                <span>Go to HomePage</span>
                 <i class="iconfont icon-angle-right"></i>
                 <i class="iconfont icon-angle-right"></i>
             </RouterLink>
@@ -85,27 +85,27 @@ const doLogin = () => {
             <div
                 class="absolute top-1/2 right-1/4 transform -translate-y-1/2 bg-white shadow-lg p-8 rounded-lg w-96 max-w-sm">
                 <nav class="text-xl font-semibold text-gray-700 mb-6">
-                    <a href="javascript:;" class="border-b-2 border-blue-500 pb-1">账户登录</a>
+                    <a href="javascript:;" class="border-b-2 border-blue-500 pb-1">Login</a>
                 </nav>
 
                 <el-form ref="formRef" :model="form" :rules="rules">
-                    <el-form-item prop="account" label="账户">
+                    <el-form-item prop="account" label="Username">
                         <el-input v-model="form.account" class="w-full" />
                     </el-form-item>
 
-                    <el-form-item prop="password" label="密码">
+                    <el-form-item prop="password" label="Password">
                         <el-input v-model="form.password" type="password" class="w-full" />
                     </el-form-item>
 
                     <el-form-item prop="agree" label-width="22px">
                         <el-checkbox v-model="form.agree" size="large" class="text-gray-600">
-                            我已同意隐私条款和服务条款
+                            I agree the agreement
                         </el-checkbox>
                     </el-form-item>
 
                     <el-button size="large" class="w-full bg-emerald-400 text-white hover:bg-white-400"
                         @click="doLogin">
-                        点击登录
+                        Sign in
                     </el-button>
                 </el-form>
             </div>

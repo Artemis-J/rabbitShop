@@ -23,11 +23,11 @@ const allCheck = (selected)=>{
                     <th class="p-3">
                         <el-checkbox :model-value="cartStore.isAll" @change="allCheck"/>
                     </th>
-                    <th class="p-3">商品信息</th>
-                    <th class="p-3">单价</th>
-                    <th class="p-3">数量</th>
-                    <th class="p-3">小计</th>
-                    <th class="p-3">操作</th>
+                    <th class="p-3">Product</th>
+                    <th class="p-3">Unit price</th>
+                    <th class="p-3">Quantity</th>
+                    <th class="p-3">TotalPrice</th>
+                    <th class="p-3">Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,9 +46,9 @@ const allCheck = (selected)=>{
                         <span class="mx-2">{{ i.count }}</span>
 
                     </td>
-                    <td class="p-3 font-semibold text-orange-500">¥{{ i.price * i.count }}</td>
+                    <td class="p-3 font-semibold text-emerald-600">¥{{ i.price * i.count }}</td>
                     <td class="p-3">
-                        <button class="text-red-500">删除</button>
+                        <button class="text-red-600 border" @click="cartStore.delCart(i.skuCode)">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -57,12 +57,12 @@ const allCheck = (selected)=>{
         <!-- 统计区域 -->
         <div class="flex justify-between items-center mt-4 p-4 border-t">
             <div>
-                <p>共 {{ cartStore.allCount }} 件商品</p>
-                <p>已选中 {{cartStore.selectedCount}} 件</p>
-                <p class="text-xl font-bold text-orange-500">合计：¥{{ cartStore.selectedPrice.toFixed(2) }}</p>
+                <p>Total: {{ cartStore.allCount }}</p>
+                <p>Selected: {{cartStore.selectedCount}}</p>
+                <p class="text-xl font-bold text-orange-500">¥{{ cartStore.selectedPrice.toFixed(2) }}</p>
             </div>
             <button class="bg-emerald-500 text-white px-6 py-2 rounded hover:bg-emerald-600">
-                下单结算
+                Payment
             </button>
         </div>
     </div>

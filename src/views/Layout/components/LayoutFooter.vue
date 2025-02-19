@@ -1,233 +1,77 @@
-<script>
-
-</script>
-
 <template>
-    <footer class="app-footer">
+    <footer class="bg-gray-100 pt-5">
         <!-- 联系我们 -->
-        <div class="contact">
-            <div class="container">
-                <dl>
-                    <dt>客户服务</dt>
-                    <dd><i class="iconfont icon-kefu"></i> 在线客服</dd>
-                    <dd><i class="iconfont icon-question"></i> 问题反馈</dd>
-                </dl>
-                <dl>
-                    <dt>关注我们</dt>
-                    <dd><i class="iconfont icon-weixin"></i> 公众号</dd>
-                    <dd><i class="iconfont icon-weibo"></i> 微博</dd>
-                </dl>
-                <dl>
-                    <dt>下载APP</dt>
-                    <dd class="qrcode"><img src="@/assets/images/qrcode.jpg" /></dd>
-                    <dd class="download">
-                        <span>扫描二维码</span>
-                        <span>立马下载APP</span>
-                        <a href="javascript:;">下载页面</a>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>服务热线</dt>
-                    <dd class="hotline">400-0000-000 <small>周一至周日 8:00-18:00</small></dd>
-                </dl>
+        <div class="bg-white">
+            <div class="container mx-auto py-10 flex justify-between px-6">
+                <div class="text-center space-y-4">
+                    <h3 class="text-lg font-semibold">Client Service</h3>
+                    <p class="flex items-center justify-center space-x-2 text-gray-600 cursor-pointer hover:text-primary">
+                        <i class="iconfont icon-kefu text-2xl"></i> <span>Online Chat</span>
+                    </p>
+                    <p class="flex items-center justify-center space-x-2 text-gray-600 cursor-pointer hover:text-primary">
+                        <i class="iconfont icon-question text-2xl"></i> <span>Bug Report</span>
+                    </p>
+                </div>
+
+                <div class="text-center space-y-4">
+                    <h3 class="text-lg font-semibold">Follow us</h3>
+                    <p class="flex items-center justify-center space-x-2 text-gray-600 cursor-pointer hover:text-primary">
+                        <i class="iconfont icon-weixin text-2xl"></i> <span>Contact</span>
+                    </p>
+                    <p class="flex items-center justify-center space-x-2 text-gray-600 cursor-pointer hover:text-primary">
+                        <i class="iconfont icon-weibo text-2xl"></i> <span>Blog</span>
+                    </p>
+                </div>
+
+                <div class="text-center space-y-4">
+                    <h3 class="text-lg font-semibold">Download APP</h3>
+                    <div class="w-24 h-24 mx-auto border border-gray-300 p-2">
+                        <img src="@/assets/images/qrcode.jpg" alt="QR Code" class="w-full h-full">
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <p>Scan Code</p>
+                        <a href="javascript:;" class="block mt-2 py-2 px-4 bg-primary text-white rounded-md">下载页面</a>
+                    </div>
+                </div>
+
+                <div class="text-center space-y-4">
+                    <h3 class="text-lg font-semibold">Tel.</h3>
+                    <p class="text-xl text-gray-700">400-0000-000</p>
+                    <small class="text-gray-500">7Days 8:00-18:00</small>
+                </div>
             </div>
         </div>
+
         <!-- 其它 -->
-        <div class="extra">
-            <div class="container">
-                <div class="slogan">
-                    <a href="javascript:;">
-                        <i class="iconfont icon-footer01"></i>
-                        <span>价格亲民</span>
-                    </a>
-                    <a href="javascript:;">
-                        <i class="iconfont icon-footer02"></i>
-                        <span>物流快捷</span>
-                    </a>
-                    <a href="javascript:;">
-                        <i class="iconfont icon-footer03"></i>
-                        <span>品质新鲜</span>
-                    </a>
+        <div class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-center space-x-10 text-lg">
+                    <div class="flex items-center space-x-2">
+                        <i class="iconfont icon-footer01 text-4xl"></i>
+                        <span>Cheap</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="iconfont icon-footer02 text-4xl"></i>
+                        <span>Fast</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="iconfont icon-footer03 text-4xl"></i>
+                        <span>Fresh</span>
+                    </div>
                 </div>
+
                 <!-- 版权信息 -->
-                <div class="copyright">
-                    <p>
-                        <a href="javascript:;">关于我们</a>
-                        <a href="javascript:;">帮助中心</a>
-                        <a href="javascript:;">售后服务</a>
-                        <a href="javascript:;">配送与验收</a>
-                        <a href="javascript:;">商务合作</a>
-                        <a href="javascript:;">搜索推荐</a>
-                        <a href="javascript:;">友情链接</a>
+                <div class="text-center text-gray-400 text-sm mt-6">
+                    <p class="mb-2 space-x-4">
+                        <a href="javascript:;" class="hover:text-white">About us</a>
+                        <a href="javascript:;" class="hover:text-white">Help center</a>
+                        <a href="javascript:;" class="hover:text-white">Product support</a>
+                        <a href="javascript:;" class="hover:text-white">Delivery</a>
+                        <a href="javascript:;" class="hover:text-white">Link</a>
                     </p>
-                    <p>CopyRight © 小兔鲜儿</p>
+                    <p>CopyRight © RabbitShop</p>
                 </div>
             </div>
         </div>
     </footer>
 </template>
-
-
-<style scoped lang='less'>
-.app-footer {
-    overflow: hidden;
-    background-color: #f5f5f5;
-    padding-top: 20px;
-
-    .contact {
-        background: #fff;
-
-        .container {
-            padding: 60px 0 40px 25px;
-            display: flex;
-        }
-
-        dl {
-            height: 190px;
-            text-align: center;
-            padding: 0 72px;
-            border-right: 1px solid #f2f2f2;
-            color: #999;
-
-            &:first-child {
-                padding-left: 0;
-            }
-
-            &:last-child {
-                border-right: none;
-                padding-right: 0;
-            }
-        }
-
-        dt {
-            line-height: 1;
-            font-size: 18px;
-        }
-
-        dd {
-            margin: 36px 12px 0 0;
-            float: left;
-            width: 92px;
-            height: 92px;
-            padding-top: 10px;
-            border: 1px solid #ededed;
-
-            .iconfont {
-                font-size: 36px;
-                display: block;
-                color: #666;
-            }
-
-            &:hover {
-                .iconfont {
-                    color: @xtxColor;
-                }
-            }
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-
-        .qrcode {
-            width: 92px;
-            height: 92px;
-            padding: 7px;
-            border: 1px solid #ededed;
-        }
-
-        .download {
-            padding-top: 5px;
-            font-size: 14px;
-            width: auto;
-            height: auto;
-            border: none;
-
-            span {
-                display: block;
-            }
-
-            a {
-                display: block;
-                line-height: 1;
-                padding: 10px 25px;
-                margin-top: 5px;
-                color: #fff;
-                border-radius: 2px;
-                background-color: @xtxColor;
-            }
-        }
-
-        .hotline {
-            padding-top: 20px;
-            font-size: 22px;
-            color: #666;
-            width: auto;
-            height: auto;
-            border: none;
-
-            small {
-                display: block;
-                font-size: 15px;
-                color: #999;
-            }
-        }
-    }
-
-    .extra {
-        background-color: #333;
-    }
-
-    .slogan {
-        height: 178px;
-        line-height: 58px;
-        padding: 60px 100px;
-        border-bottom: 1px solid #434343;
-        display: flex;
-        justify-content: space-between;
-
-        a {
-            height: 58px;
-            line-height: 58px;
-            color: #fff;
-            font-size: 28px;
-
-            i {
-                font-size: 50px;
-                vertical-align: middle;
-                margin-right: 10px;
-                font-weight: 100;
-            }
-
-            span {
-                vertical-align: middle;
-                text-shadow: 0 0 1px #333;
-            }
-        }
-    }
-
-    .copyright {
-        height: 170px;
-        padding-top: 40px;
-        text-align: center;
-        color: #999;
-        font-size: 15px;
-
-        p {
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        a {
-            color: #999;
-            line-height: 1;
-            padding: 0 10px;
-            border-right: 1px solid #999;
-
-            &:last-child {
-                border-right: none;
-            }
-        }
-    }
-}
-</style>

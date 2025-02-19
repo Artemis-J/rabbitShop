@@ -2,117 +2,26 @@
 import { useCategoryStore } from '@/stores/category';
 import { useScroll } from '@vueuse/core';
 
-const { y } = useScroll(window)
-//使用pinia中的数据
-const categoryStore = useCategoryStore()
-
+const { y } = useScroll(window);
+const categoryStore = useCategoryStore();
 </script>
 
 <template>
-    <div class="app-header-sticky" :class="{ show: y > 78 }">
-        <div class="container">
-            <RouterLink class="logo" to="/" />
-            <ul class="app-header-nav">
-                <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
-                    <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
-                </li>
+    <div class="fixed w-full h-20 bg-white border-b border-gray-200 z-50 transition-transform opacity-0 -translate-y-full"
+        :class="{ 'opacity-100 translate-y-0': y > 78 }">
+        <div class="container flex items-center justify-between px-6 mx-auto">
+            <RouterLink to="/" class="flex items-center">
+                <img src="@/assets/images/logo.png" alt="Logo" class="h-20 w-auto" />
+            </RouterLink>
 
+            <ul class="flex items-center space-x-10">
+                <li v-for="item in categoryStore.categoryList" :key="item.id">
+                    <RouterLink :to="`/category/${item.id}`"
+                        class="text-lg font-bold text-primary hover:text-secondary transition">
+                        {{ item.name }}
+                    </RouterLink>
+                </li>
             </ul>
-            <div class="right">
-                <RouterLink to="/">品牌</RouterLink>
-                <RouterLink to="/">专题</RouterLink>
-            </div>
         </div>
     </div>
 </template>
-
-<style scoped lang="less">
-.app-header-sticky {
-    width: 100%;
-    height: 80px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 999;
-    background-color: #fff;
-    border-bottom: 1px solid #e4e4e4;
-    //关键样式
-    //状态一：往上平移自身高度+完全透明
-    transform: translateY(-100%);
-    opacity: 0;
-
-    //状态二：移除平移+完全不透明
-    &.show {
-        transition: all 0.3s linear;
-        transform: none;
-        opacity: 1;
-    }
-
-    .container {
-        display: flex;
-        align-items: center;
-
-        ul {
-            display: flex;
-            height: 53px;
-            justify-content: flex-end;
-            align-items: center;
-
-            li {
-                margin-right: 40px;
-                width: 38px;
-                text-align: center;
-
-                a {
-                    font-size: 16px;
-                    font-weight: bolder;
-                    height: 32px;
-                    color: @xtxColor;
-                    line-height: 1.5;
-                    display: inline-block;
-
-                    i {
-                        font-size: 14px;
-                        margin-right: 2px;
-                    }
-
-                    &:hover {
-                        color: @helpColor;
-                    }
-                }
-            }
-        }
-
-        .logo {
-            width: 200px;
-            height: 80px;
-            background: url("@/assets/images/logo.png") no-repeat right 2px;
-            background-size: 160px auto;
-        }
-    }
-
-    .app-header-nav {
-        padding: 15px 0 0 40px;
-
-    }
-
-    .right {
-        width: 220px;
-        display: flex;
-        text-align: center;
-        padding-left: 40px;
-        border-left: 2px solid @xtxColor;
-
-        a {
-            width: 38px;
-            margin-right: 40px;
-            font-size: 16px;
-            line-height: 1;
-
-            &:hover {
-                color: @xtxColor;
-            }
-        }
-    }
-}
-</style>
