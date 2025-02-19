@@ -19,6 +19,6 @@ npm install
 ## Run the frontend
 npm run serve
 
-##login:
--username:xiaotuxian001
--password:123456
+
+username: xiaotuxian001
+password: 123456
